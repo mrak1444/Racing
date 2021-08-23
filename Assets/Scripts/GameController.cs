@@ -11,5 +11,6 @@ internal class GameController : BaseController
         var rightMove = new SubscriptionProperty<float>();
         var _inputGameController = new InputGameController(leftMove, rightMove, profilePlayer.CurrentCar);
         var _backgroundController = new BackgroundController(leftMove, rightMove);
+        var _carController = new CarController();
     }
 }
