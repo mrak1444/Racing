@@ -1,7 +1,6 @@
 using Game.InputLogic;
 using Profile;
 using Tools;
-using UnityEngine;
 
 internal class GameController : BaseController
 {

@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-
 namespace Profile.Analytic
 {
     internal interface IAnalyticTools
