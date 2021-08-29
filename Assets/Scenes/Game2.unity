@@ -157,6 +157,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _ui: {fileID: 1923919855}
   _unityAdsTools: {fileID: 2083185741}
+  _itemConfigs:
+  - {fileID: 11400000, guid: 442126c7aaee3ef489ac768f9b1b0e1e, type: 2}
+  - {fileID: 11400000, guid: 424ca36e0dec9da4cacea4d959b53713, type: 2}
 --- !u!114 &169082821
 MonoBehaviour:
   m_ObjectHideFlags: 0

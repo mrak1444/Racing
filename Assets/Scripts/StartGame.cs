@@ -1,6 +1,7 @@
 using Profile;
 using UnityEngine;
 using Tools;
+using System.Collections.Generic;
 
 public class StartGame : MonoBehaviour
 {
@@ -9,11 +10,13 @@ public class StartGame : MonoBehaviour
 
     [SerializeField] private UnityAdsTools _unityAdsTools;
 
+    [SerializeField] private List<ItemConfig> _itemConfigs;
+
     private void Awake()
     {
         var _profilePlayer = new ProfilePlayer(15f, _unityAdsTools);
         _profilePlayer.CurrentState.Value = GameState.Start;
-        _mainComtroller = new MainController(_ui, _profilePlayer);
+        _mainComtroller = new MainController(_ui, _profilePlayer, _itemConfigs);
     }
 
     protected void OnDestroy()

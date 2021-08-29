@@ -1,4 +1,5 @@
 using Profile;
+using System.Collections.Generic;
 using Ui;
 using UnityEngine;
 
@@ -8,13 +9,16 @@ internal class MainController : BaseController
     private ProfilePlayer _profilePlayer;
     private MainMenuController _mainMenuController;
     private GameController _gameController;
+    private InventoryController _inventoryController;
+    private readonly List<ItemConfig> _itemConfigs;
 
-    public MainController(Transform placeForUi, ProfilePlayer profilePlayer)
+    public MainController(Transform placeForUi, ProfilePlayer profilePlayer, List<ItemConfig> itemConfig)
     {
         _placeForUi = placeForUi;
         _profilePlayer = profilePlayer;
         OnChangeGameState(_profilePlayer.CurrentState.Value);
         _profilePlayer.CurrentState.SubscribeOnChange(OnChangeGameState);
+        _itemConfigs = itemConfig;
     }
 
     private void OnChangeGameState(GameState state)
@@ -27,6 +31,8 @@ internal class MainController : BaseController
                 break;
 
             case GameState.Game:
+                _inventoryController = new InventoryController(_itemConfigs);
+                _inventoryController.ShowInventory();
                 _gameController = new GameController(_profilePlayer);
                 _mainMenuController?.Dispose();
                 break;
@@ -34,6 +40,7 @@ internal class MainController : BaseController
             default:
                 _mainMenuController?.Dispose();
                 _gameController?.Dispose();
+                _inventoryController?.Dispose();
                 break;
         }
     }
@@ -43,6 +50,7 @@ internal class MainController : BaseController
         _mainMenuController?.Dispose();
         _gameController?.Dispose();
         _profilePlayer.CurrentState.UnSubscriptionOnChange(OnChangeGameState);
+        _inventoryController?.Dispose();
         base.OnDispose();
     }
 }
