@@ -29,7 +29,11 @@ internal class ItemsRepository : BaseController, IItemsRepository
         return new Item
         {
             Id = config.Id,
-            Info = new ItemInfo { Title = config.Title }
+            Info = new ItemInfo { Title = config.Title },
+            View = config.View,
+            Obj = config.Obj,
+            Type = config.Type,
+            Value = config.Value
         };
     }
 }

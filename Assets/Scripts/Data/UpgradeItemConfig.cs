@@ -12,10 +12,3 @@ public class UpgradeItemConfig : ScriptableObject
     public UpgradeType Type => type;
     public float Value => value;
 }
-
-public enum UpgradeType
-{
-    None,
-    Speed,
-    Control
-}

@@ -1,13 +1,16 @@
+using Profile;
 using Tools;
 
 internal class CarController : BaseController
 {
     private CarControllerView _view;
-    private readonly ResourcePath _viewPath = new ResourcePath { PathResource = "Prefabs/Car" };
+    private Car _car;
+    private readonly ResourcePath _viewPath; //= new ResourcePath { PathResource = "Prefabs/Car" };
 
-    public CarController()
+    public CarController(Car Car)
     {
         _view = LoadView();
+        _viewPath = new ResourcePath { PathResource = Car.ResourcePath };
     }
 
     private CarControllerView LoadView()

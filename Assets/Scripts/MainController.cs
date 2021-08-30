@@ -30,11 +30,15 @@ internal class MainController : BaseController
                 _gameController?.Dispose();
                 break;
 
-            case GameState.Game:
-                _inventoryController = new InventoryController(_itemConfigs);
+            case GameState.Garage:
+                _inventoryController = new InventoryController(_itemConfigs, _profilePlayer);
                 _inventoryController.ShowInventory();
-                _gameController = new GameController(_profilePlayer);
                 _mainMenuController?.Dispose();
+                break;
+
+            case GameState.Game:
+                _gameController = new GameController(_profilePlayer);
+                _inventoryController?.Dispose();
                 break;
 
             default:
