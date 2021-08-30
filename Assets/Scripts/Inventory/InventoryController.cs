@@ -35,10 +35,11 @@ internal class InventoryController : BaseController, IInventoryController
         {
             _inventoryModel.EquipItem(item);
 
-            var equippedItems = _inventoryModel.GetEquippedItems();
-
-            _inventoryView.Display(equippedItems);
+            
         }
+        var equippedItems = _inventoryModel.GetEquippedItems();
+
+        _inventoryView.Display(equippedItems);
     }
 
     private void StartGame()

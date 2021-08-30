@@ -39,6 +39,7 @@ internal class InventoryView : MonoBehaviour , IInventoryView
 
     private void startGame1()
     {
+        Debug.Log(_speed2);
         _car.Speed = _speed2;
         _car.ResourcePath = _resourcePath2;
         _profilePlayer.CurrentState.Value = GameState.Game;
@@ -46,34 +47,14 @@ internal class InventoryView : MonoBehaviour , IInventoryView
 
     public void Display(List<IItem> items)
     {
-        Debug.Log(items[0].Value);
         _img1.sprite = items[0].View;
         _speed1 = items[0].Value;
         _resourcePath1 = items[0].Obj;
 
-        _img1.sprite = items[1].View;
+        _img2.sprite = items[1].View;
         _speed2 = items[1].Value;
         _resourcePath2 = items[1].Obj;
 
-        /*foreach (var item in items)
-        {
-            if(_img1.sprite == null)
-            {
-                _img1.sprite = item.View;
-                Debug.Log(item.Value);
-                _speed[0] = item.Value;
-                _resourcePath[0] = item.Obj;
-            }
-            else
-            {
-                _img2.sprite = item.View;
-                Debug.Log(item.Value);
-                _speed[1] = item.Value;
-                _resourcePath[1] = item.Obj;
-            }
-
-            Debug.Log($"Id item: {item.Id}, Title item: {item.Info.Title}");
-        }*/
     }
 
     protected void OnDestroy()
