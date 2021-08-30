@@ -1,6 +1,6 @@
 using Tools;
 
-internal class CarController : BaseController, IAbilityActivator
+internal class CarController : BaseController
 {
     private CarControllerView _view;
     private readonly ResourcePath _viewPath = new ResourcePath { PathResource = "Prefabs/Car" };
@@ -16,10 +16,5 @@ internal class CarController : BaseController, IAbilityActivator
         AddGameObjects(objView);
 
         return objView.GetComponent<CarControllerView>();
-    }
-
-    public UnityEngine.GameObject GetViewObject()
-    {
-        throw new System.NotImplementedException();
     }
 }
