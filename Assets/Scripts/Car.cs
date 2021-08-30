@@ -1,17 +1,12 @@
 namespace Profile
 {
-    internal class Car : IUpgradableCar
+    internal class Car
     {
-        private float _defaultSpeed;
-        public float Speed 
-        { 
-            get => _defaultSpeed; 
-            set => _defaultSpeed = value; 
-        }
-
         public Car(float speed)
         {
-            _defaultSpeed = speed;
+            Speed = speed;
         }
+
+        public float Speed { get; }
     }
 }
