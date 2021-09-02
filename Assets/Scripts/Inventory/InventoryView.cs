@@ -7,10 +7,16 @@ using UnityEngine.UI;
 
 internal class InventoryView : MonoBehaviour , IInventoryView
 {
-    [SerializeField] private Image _img1;
-    [SerializeField] private Image _img2;
-    [SerializeField] private Button _but1;
-    [SerializeField] private Button _but2;
+    [SerializeField] private Button _startMenu;
+    [SerializeField] private Button _backMenu;
+    [SerializeField] private Image _inventoryButtonImg1;
+    [SerializeField] private Image _inventoryButtonImg2;
+    [SerializeField] private Image _inventoryButtonImg3;
+    [SerializeField] private Image _inventoryButtonImg4;
+    [SerializeField] private Button _inventoryButton1;
+    [SerializeField] private Button _inventoryButton2;
+    [SerializeField] private Button _inventoryButton3;
+    [SerializeField] private Button _inventoryButton4;
     private Car _car;
     private float _speed1;
     private float _speed2;
@@ -26,8 +32,8 @@ internal class InventoryView : MonoBehaviour , IInventoryView
 
     public void Init() //UnityAction startGame)
     {
-        _but1.onClick.AddListener(startGame1);
-        _but2.onClick.AddListener(startGame2);
+        _inventoryButton1.onClick.AddListener(startGame1);
+        _inventoryButton2.onClick.AddListener(startGame2);
     }
 
     private void startGame2()
@@ -47,11 +53,11 @@ internal class InventoryView : MonoBehaviour , IInventoryView
 
     public void Display(List<IItem> items)
     {
-        _img1.sprite = items[0].View;
+        _inventoryButtonImg1.sprite = items[0].View;
         _speed1 = items[0].Value;
         _resourcePath1 = items[0].Obj;
 
-        _img2.sprite = items[1].View;
+        _inventoryButtonImg2.sprite = items[1].View;
         _speed2 = items[1].Value;
         _resourcePath2 = items[1].Obj;
 
@@ -59,7 +65,7 @@ internal class InventoryView : MonoBehaviour , IInventoryView
 
     protected void OnDestroy()
     {
-        _but1.onClick.RemoveAllListeners();
-        _but2.onClick.RemoveAllListeners();
+        _inventoryButton1.onClick.RemoveAllListeners();
+        _inventoryButton2.onClick.RemoveAllListeners();
     }
 }

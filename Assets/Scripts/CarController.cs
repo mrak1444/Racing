@@ -5,7 +5,7 @@ internal class CarController : BaseController
 {
     private CarControllerView _view;
     private Car _car;
-    private readonly ResourcePath _viewPath; //= new ResourcePath { PathResource = "Prefabs/Car" };
+    private readonly ResourcePath _viewPath = new ResourcePath { PathResource = "Prefabs/Car" };
 
     public CarController(Car Car)
     {
