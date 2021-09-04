@@ -17,7 +17,7 @@ internal class InventoryController : BaseController, IInventoryController
         _itemsRepository = new ItemsRepository(itemConfigs);
         _profilePlayer = profilePlayer;
         _inventoryView = LoadView(placeForUi);
-        _inventoryView.Init(_itemsRepository.Items);
+        _inventoryView.Init(_itemsRepository.Items, _inventoryModel);
     }
 
     private InventoryView LoadView(Transform placeForUi)
