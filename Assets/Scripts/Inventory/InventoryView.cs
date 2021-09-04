@@ -1,71 +1,47 @@
-using Profile;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
 
-internal class InventoryView : MonoBehaviour , IInventoryView
+internal class InventoryView : MonoBehaviour
 {
+    [SerializeField] private GameObject _menu;
     [SerializeField] private Button _startMenu;
     [SerializeField] private Button _backMenu;
-    [SerializeField] private Image _inventoryButtonImg1;
-    [SerializeField] private Image _inventoryButtonImg2;
-    [SerializeField] private Image _inventoryButtonImg3;
-    [SerializeField] private Image _inventoryButtonImg4;
-    [SerializeField] private Button _inventoryButton1;
-    [SerializeField] private Button _inventoryButton2;
-    [SerializeField] private Button _inventoryButton3;
-    [SerializeField] private Button _inventoryButton4;
-    private Car _car;
-    private float _speed1;
-    private float _speed2;
-    private string _resourcePath1;
-    private string _resourcePath2;
-    private ProfilePlayer _profilePlayer;
+    [SerializeField] private Image[] _inventoryButtonImg = new Image[4];
+    [SerializeField] private Button[] _inventoryButton = new Button[4];
 
-    public InventoryView(ProfilePlayer profilePlayer)
+    public void Init(IReadOnlyDictionary<int, IItem> Items)
     {
-        _car = profilePlayer.CurrentCar;
-        _profilePlayer = profilePlayer;
+        Display(Items);
+        
+        _startMenu.onClick.AddListener(StartMenu);
+        _backMenu.onClick.AddListener(BackMenu);
     }
 
-    public void Init() //UnityAction startGame)
+    private void StartMenu()
     {
-        _inventoryButton1.onClick.AddListener(startGame1);
-        _inventoryButton2.onClick.AddListener(startGame2);
+        _menu.SetActive(true);
+        _startMenu.gameObject.SetActive(false);
     }
 
-    private void startGame2()
+    private void BackMenu()
     {
-        _car.Speed = _speed1;
-        _car.ResourcePath = _resourcePath1;
-        _profilePlayer.CurrentState.Value = GameState.Game;
+        _startMenu.gameObject.SetActive(true);
+        _menu.SetActive(false);
     }
 
-    private void startGame1()
+    private void Display(IReadOnlyDictionary<int, IItem> Items)
     {
-        Debug.Log(_speed2);
-        _car.Speed = _speed2;
-        _car.ResourcePath = _resourcePath2;
-        _profilePlayer.CurrentState.Value = GameState.Game;
-    }
-
-    public void Display(List<IItem> items)
-    {
-        _inventoryButtonImg1.sprite = items[0].View;
-        _speed1 = items[0].Value;
-        _resourcePath1 = items[0].Obj;
-
-        _inventoryButtonImg2.sprite = items[1].View;
-        _speed2 = items[1].Value;
-        _resourcePath2 = items[1].Obj;
-
+        for(int i = 1; i <= Items.Count; i++)
+        {
+            _inventoryButtonImg[i-1].sprite = Items[i].View;
+        }
     }
 
     protected void OnDestroy()
     {
-        _inventoryButton1.onClick.RemoveAllListeners();
-        _inventoryButton2.onClick.RemoveAllListeners();
+        _startMenu.onClick.RemoveAllListeners();
+        _backMenu.onClick.RemoveAllListeners();
     }
 }

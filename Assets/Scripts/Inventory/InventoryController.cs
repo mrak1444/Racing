@@ -5,44 +5,30 @@ using UnityEngine;
 
 internal class InventoryController : BaseController, IInventoryController
 {
-    private readonly ResourcePath _viewPath = new ResourcePath { PathResource = "Prefabs/Inventory" };
+    private readonly ResourcePath _viewPath = new ResourcePath { PathResource = "Prefabs/Inventory" };  //mainMenu  Inventory
     private readonly IInventoryModel _inventoryModel;
     private readonly IItemsRepository _itemsRepository;
-    private readonly IInventoryView _inventoryView;
+    private readonly InventoryView _inventoryView;
     private ProfilePlayer _profilePlayer;
 
-    public InventoryController(List<ItemConfig> itemConfigs, ProfilePlayer profilePlayer)
+    public InventoryController(List<ItemConfig> itemConfigs, ProfilePlayer profilePlayer, Transform placeForUi)
     {
         _inventoryModel = new InventoryModel();
         _itemsRepository = new ItemsRepository(itemConfigs);
-        _inventoryView = new InventoryView(profilePlayer);
         _profilePlayer = profilePlayer;
-        _inventoryView = LoadView();
-        _inventoryView.Init();
+        _inventoryView = LoadView(placeForUi);
+        _inventoryView.Init(_itemsRepository.Items);
     }
 
-    private IInventoryView LoadView()
+    private InventoryView LoadView(Transform placeForUi)
     {
-        GameObject objectView = UnityEngine.Object.Instantiate(ResourceLoader.LoadPrefab(_viewPath));
+        GameObject objectView = Object.Instantiate(ResourceLoader.LoadPrefab(_viewPath), placeForUi, false);
         AddGameObjects(objectView);
-        return objectView.GetComponent<IInventoryView>();
+        return objectView.GetComponent<InventoryView>();
     }
 
     public void ShowInventory()
     {
-        foreach(var item in _itemsRepository.Items.Values)
-        {
-            _inventoryModel.EquipItem(item);
 
-            
-        }
-        var equippedItems = _inventoryModel.GetEquippedItems();
-
-        _inventoryView.Display(equippedItems);
-    }
-
-    private void StartGame()
-    {
-        _profilePlayer.CurrentState.Value = GameState.Game;
     }
 }
