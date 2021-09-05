@@ -158,8 +158,8 @@ MonoBehaviour:
   _ui: {fileID: 1923919855}
   _unityAdsTools: {fileID: 2083185741}
   _itemConfigs:
-  - {fileID: 11400000, guid: cfba1883118af6140bdf49b7f43740d8, type: 2}
   - {fileID: 11400000, guid: 442126c7aaee3ef489ac768f9b1b0e1e, type: 2}
+  - {fileID: 11400000, guid: 5c37dc5d037ca8b4b862b3fe9b3d157d, type: 2}
 --- !u!114 &169082821
 MonoBehaviour:
   m_ObjectHideFlags: 0

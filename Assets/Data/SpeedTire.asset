@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9bcd4f1559043746b06bdb02cddda1b, type: 3}
   m_Name: SpeedTire
   m_EditorClassIdentifier: 
-  _id: 2
+  _id: 1
   _title: SpeedTire
   _view: {fileID: 21300000, guid: 156462fed3bc4f941881f88f3b137f4f, type: 3}
   _obj: Prefabs/CarSpeed
