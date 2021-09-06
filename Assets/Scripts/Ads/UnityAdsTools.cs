@@ -9,9 +9,6 @@ namespace Tools
         private string _gameId = "4279637";
         private string _videoId = "video";
 
-
-        private Action _callbackSuccessShowVideo;
-
         private void Start()
         {
             Advertisement.Initialize(_gameId);
