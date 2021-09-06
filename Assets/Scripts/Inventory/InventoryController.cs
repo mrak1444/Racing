@@ -9,7 +9,7 @@ internal class InventoryController : BaseController, IInventoryController
     private readonly IInventoryModel _inventoryModel;
     private readonly IItemsRepository _itemsRepository;
     private readonly InventoryView _inventoryView;
-    private ProfilePlayer _profilePlayer;
+    private ProfilePlayer _profilePlayer;                  //дописать применение инвенторя на машинку
 
     public InventoryController(List<ItemConfig> itemConfigs, ProfilePlayer profilePlayer, Transform placeForUi)
     {
@@ -29,6 +29,6 @@ internal class InventoryController : BaseController, IInventoryController
 
     public void ShowInventory()
     {
-
+        //дописать применение инвенторя на машинку
     }
 }
