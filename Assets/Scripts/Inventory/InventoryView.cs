@@ -10,6 +10,7 @@ internal class InventoryView : MonoBehaviour
     [SerializeField] private Button _backMenu;
     [SerializeField] private Image[] _inventoryButtonImg = new Image[4];
     [SerializeField] private Button[] _inventoryButton = new Button[4];
+    public event Action<IItem> eventItem;
 
     private IInventoryModel _inventoryModel;
 
@@ -39,10 +40,7 @@ internal class InventoryView : MonoBehaviour
 
     public void EquipItem(IItem Item)
     {
-        if (!_inventoryModel.GetEquippedItems().Contains(Item))
-            _inventoryModel.EquipItem(Item);
-        else
-            _inventoryModel.UnequipItem(Item);
+        eventItem.Invoke(Item);
     }
 
     private void Display(IReadOnlyDictionary<int, IItem> Items)

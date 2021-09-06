@@ -18,6 +18,7 @@ internal class InventoryController : BaseController, IInventoryController
         _profilePlayer = profilePlayer;
         _inventoryView = LoadView(placeForUi);
         _inventoryView.Init(_itemsRepository.Items, _inventoryModel);
+        _inventoryView.eventItem += EquipItem;
     }
 
     private InventoryView LoadView(Transform placeForUi)
@@ -25,6 +26,14 @@ internal class InventoryController : BaseController, IInventoryController
         GameObject objectView = Object.Instantiate(ResourceLoader.LoadPrefab(_viewPath), placeForUi, false);
         AddGameObjects(objectView);
         return objectView.GetComponent<InventoryView>();
+    }
+
+    private void EquipItem(IItem Item)
+    {
+        if (!_inventoryModel.GetEquippedItems().Contains(Item))
+            _inventoryModel.EquipItem(Item);
+        else
+            _inventoryModel.UnequipItem(Item);
     }
 
     public void ShowInventory()
