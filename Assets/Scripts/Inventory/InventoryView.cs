@@ -1,14 +1,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 internal class InventoryView : MonoBehaviour
 {
+    [SerializeField] private float _duration = 0.3f;
     [SerializeField] private GameObject _menu;
     [SerializeField] private Button _startMenu;
     [SerializeField] private Button _backMenu;
+    [SerializeField] private Image _background;
     [SerializeField] private Image[] _inventoryButtonImg = new Image[4];
     [SerializeField] private Button[] _inventoryButton = new Button[4];
+    [SerializeField] private Color _colorOpenPopUp;
+    [SerializeField] private Color _colorClosePopUp;
 
     private IInventoryModel _inventoryModel;
 
@@ -23,14 +28,34 @@ internal class InventoryView : MonoBehaviour
     private void StartMenu()
     {
         _menu.SetActive(true);
+
         _startMenu.gameObject.SetActive(false);
+
+        var sequence = DOTween.Sequence();
+        sequence.Insert(0.0f, _menu.transform.DOScale(Vector3.one, _duration));
+        sequence.Insert(0.2f, _background.DOColor(_colorOpenPopUp, _duration));
+        sequence.OnComplete(() =>
+        {
+            sequence = null;
+        });
     }
 
     private void BackMenu()
     {
         _startMenu.gameObject.SetActive(true);
-        _menu.SetActive(false);
-        foreach(var n in _inventoryModel.GetEquippedItems())
+
+        var sequence = DOTween.Sequence();
+
+        sequence.Insert(0.0f, _background.DOColor(_colorClosePopUp, _duration));
+        sequence.Insert(0.2f, _menu.transform.DOScale(Vector3.zero, _duration));
+
+        sequence.OnComplete(() =>
+        {
+            sequence = null;
+            _menu.SetActive(false);
+        });
+
+        foreach (var n in _inventoryModel.GetEquippedItems())
         {
             Debug.Log(n.Info.Title);
         }
