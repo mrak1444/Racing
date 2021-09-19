@@ -1,23 +1,25 @@
-public class RewardController
+using System;
+using Tools;
+using UnityEngine;
+
+internal class RewardController : BaseController
 {
+    private readonly ResourcePath _viewPath = new ResourcePath { PathResource = "Prefabs/DailyRewardWindow" };
+
     private DailyRewardView _dailyRewardView;
     private DailyRewardController _dailyRewardController;
 
-    private WeeklyRewardView _weeklyRewardView;
-    private WeeklyRewardController _weeklyRewardController;
-
-    public RewardController(DailyRewardView dailyRewardView, WeeklyRewardView weeklyRewardView)
+    public RewardController(Transform placeForUi)
     {
-        _dailyRewardView = dailyRewardView;
-        _weeklyRewardView = weeklyRewardView;
-    }
-
-    public void RefreshView()
-    {
+        _dailyRewardView = LoadView(placeForUi);
         _dailyRewardController = new DailyRewardController(_dailyRewardView);
         _dailyRewardController.RefreshView();
+    }
 
-        _weeklyRewardController = new WeeklyRewardController(_weeklyRewardView);
-        _weeklyRewardController.RefreshView();
+    private DailyRewardView LoadView(Transform placeForUi)
+    {
+        GameObject objectView = UnityEngine.Object.Instantiate(ResourceLoader.LoadPrefab(_viewPath), placeForUi, false);
+        AddGameObjects(objectView);
+        return objectView.GetComponent<DailyRewardView>();
     }
 }
