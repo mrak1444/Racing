@@ -2,12 +2,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using System;
+using Profile;
 
 internal class InventoryView : MonoBehaviour
 {
     [SerializeField] private float _duration = 0.3f;
     [SerializeField] private GameObject _menu;
-    [SerializeField] private Button _startMenu;
+    [SerializeField] private Button _startMenuInventory;
+    [SerializeField] private Button _startMenuReward;
     [SerializeField] private Button _backMenu;
     [SerializeField] private Image _background;
     [SerializeField] private Image[] _inventoryButtonImg = new Image[4];
@@ -16,20 +19,28 @@ internal class InventoryView : MonoBehaviour
     [SerializeField] private Color _colorClosePopUp;
 
     private IInventoryModel _inventoryModel;
+    private ProfilePlayer _profilePlayer;
 
-    public void Init(IReadOnlyDictionary<int, IItem> Items, IInventoryModel inventoryModel)
+    public void Init(IReadOnlyDictionary<int, IItem> Items, IInventoryModel inventoryModel, ProfilePlayer profilePlayer)
     {
         Display(Items);
         _inventoryModel = inventoryModel;
-        _startMenu.onClick.AddListener(StartMenu);
+        _startMenuInventory.onClick.AddListener(StartMenuInventory);
+        _startMenuReward.onClick.AddListener(StartMenuReward);
         _backMenu.onClick.AddListener(BackMenu);
+        _profilePlayer = profilePlayer;
     }
 
-    private void StartMenu()
+    private void StartMenuReward()
+    {
+        _profilePlayer.CurrentState.Value = GameState.Reward;
+    }
+
+    private void StartMenuInventory()
     {
         _menu.SetActive(true);
 
-        _startMenu.gameObject.SetActive(false);
+        _startMenuInventory.gameObject.SetActive(false);
 
         var sequence = DOTween.Sequence();
         sequence.Insert(0.0f, _menu.transform.DOScale(Vector3.one, _duration));
@@ -42,7 +53,7 @@ internal class InventoryView : MonoBehaviour
 
     private void BackMenu()
     {
-        _startMenu.gameObject.SetActive(true);
+        _startMenuInventory.gameObject.SetActive(true);
 
         var sequence = DOTween.Sequence();
 
@@ -82,7 +93,7 @@ internal class InventoryView : MonoBehaviour
 
     protected void OnDestroy()
     {
-        _startMenu.onClick.RemoveAllListeners();
+        _startMenuInventory.onClick.RemoveAllListeners();
         _backMenu.onClick.RemoveAllListeners();
     }
 }

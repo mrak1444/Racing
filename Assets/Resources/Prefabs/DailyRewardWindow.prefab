@@ -59,7 +59,7 @@ MonoBehaviour:
   m_StartCorner: 0
   m_StartAxis: 0
   m_CellSize: {x: 250, y: 270}
-  m_Spacing: {x: 40, y: 40}
+  m_Spacing: {x: 254.26, y: 40}
   m_Constraint: 0
   m_ConstraintCount: 2
 --- !u!222 &3183563148630837259
@@ -134,7 +134,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.00097656, y: -0.000094414}
+  m_AnchoredPosition: {x: -0.0009765625, y: -0.00009536743}
   m_SizeDelta: {x: 396.36, y: 37.432}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3183563149026107800
@@ -329,11 +329,11 @@ RectTransform:
   m_Father: {fileID: 3183563150603859111}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -21, y: 439}
-  m_SizeDelta: {x: 396.36, y: 37.4324}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 850, y: -46}
+  m_SizeDelta: {x: 396.36, y: 37.432373}
+  m_Pivot: {x: 0, y: 1}
 --- !u!222 &3183563149304544664
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -665,7 +665,7 @@ RectTransform:
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 200, y: -46}
   m_SizeDelta: {x: 400, y: 55}
-  m_Pivot: {x: 0, y: 0.5}
+  m_Pivot: {x: 0, y: 1}
 --- !u!222 &3183563150209840172
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1124,6 +1124,7 @@ MonoBehaviour:
     type: 3}
   _getRewardButton: {fileID: 3183563150171851341}
   _resetButton: {fileID: 3183563149187039424}
+  _closeButton: {fileID: 821309094756131598}
   _sliderRewardDaily: {fileID: 3183563149026107807}
 --- !u!1 &8098077340484095625
 GameObject:

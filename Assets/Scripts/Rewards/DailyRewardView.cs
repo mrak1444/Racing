@@ -17,9 +17,12 @@ public class DailyRewardView : MonoBehaviour
     [SerializeField] private ContainerRewardSlotView _containerRewardSlotView;
     [SerializeField] private Button _getRewardButton;
     [SerializeField] private Button _resetButton;
+    [SerializeField] private Button _closeButton;
     [SerializeField] private Image _sliderRewardDaily;
 
     public Button ResetButton => _resetButton;
+
+    public Button CloseButton => _closeButton;
 
     public Button GetRewardButton => _getRewardButton;
 

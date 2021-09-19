@@ -35,10 +35,11 @@ internal class MainController : BaseController
                 _inventoryController = new InventoryController(_itemConfigs, _profilePlayer, _placeForUi);
                 _gameController = new GameController(_profilePlayer);
                 _mainMenuController?.Dispose();
+                _rewardController?.Dispose();
                 break;
 
             case GameState.Reward:
-                _rewardController = new RewardController(_placeForUi);
+                _rewardController = new RewardController(_placeForUi, _profilePlayer);
                 break;
 
             default:

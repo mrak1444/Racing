@@ -1,10 +1,11 @@
+using Profile;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-public class DailyRewardController
+internal class DailyRewardController
 {
     private DailyRewardView _dailyRewardView;
 
@@ -12,9 +13,12 @@ public class DailyRewardController
 
     private bool _isGetReward;
 
-    public DailyRewardController(DailyRewardView dailyRewardView)
+    private ProfilePlayer _profilePlayer;
+
+    public DailyRewardController(DailyRewardView dailyRewardView, ProfilePlayer profilePlayer)
     {
         _dailyRewardView = dailyRewardView;
+        _profilePlayer = profilePlayer;
     }
 
     public void RefreshView()
@@ -98,6 +102,12 @@ public class DailyRewardController
     {
         _dailyRewardView.GetRewardButton.onClick.AddListener(ClaimReward);
         _dailyRewardView.ResetButton.onClick.AddListener(ResetTimer);
+        _dailyRewardView.CloseButton.onClick.AddListener(CloseReward);
+    }
+
+    private void CloseReward()
+    {
+        _profilePlayer.CurrentState.Value = GameState.Game;
     }
 
     private void ClaimReward()

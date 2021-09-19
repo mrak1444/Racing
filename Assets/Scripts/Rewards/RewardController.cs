@@ -9,10 +9,10 @@ internal class RewardController : BaseController
     private DailyRewardView _dailyRewardView;
     private DailyRewardController _dailyRewardController;
 
-    public RewardController(Transform placeForUi)
+    public RewardController(Transform placeForUi, Profile.ProfilePlayer profilePlayer)
     {
         _dailyRewardView = LoadView(placeForUi);
-        _dailyRewardController = new DailyRewardController(_dailyRewardView);
+        _dailyRewardController = new DailyRewardController(_dailyRewardView, profilePlayer);
         _dailyRewardController.RefreshView();
     }
 
