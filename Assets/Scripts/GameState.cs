@@ -5,6 +5,7 @@ namespace Profile
         None,
         Start,
         Game,
-        Reward
+        Reward,
+        Fight
     }
 }

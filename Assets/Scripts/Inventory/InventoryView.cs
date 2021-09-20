@@ -11,6 +11,7 @@ internal class InventoryView : MonoBehaviour
     [SerializeField] private GameObject _menu;
     [SerializeField] private Button _startMenuInventory;
     [SerializeField] private Button _startMenuReward;
+    [SerializeField] private Button _startMenuFight;
     [SerializeField] private Button _backMenu;
     [SerializeField] private Image _background;
     [SerializeField] private Image[] _inventoryButtonImg = new Image[4];
@@ -27,8 +28,14 @@ internal class InventoryView : MonoBehaviour
         _inventoryModel = inventoryModel;
         _startMenuInventory.onClick.AddListener(StartMenuInventory);
         _startMenuReward.onClick.AddListener(StartMenuReward);
+        _startMenuFight.onClick.AddListener(StartMenuFight);
         _backMenu.onClick.AddListener(BackMenu);
         _profilePlayer = profilePlayer;
+    }
+
+    private void StartMenuFight()
+    {
+        _profilePlayer.CurrentState.Value = GameState.Fight;
     }
 
     private void StartMenuReward()

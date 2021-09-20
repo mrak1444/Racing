@@ -12,6 +12,7 @@ internal class MainController : BaseController
     private InventoryController _inventoryController;
     private readonly List<ItemConfig> _itemConfigs;
     private RewardController _rewardController;
+    private FightWindowController _fightWindowController;
 
     public MainController(Transform placeForUi, ProfilePlayer profilePlayer, List<ItemConfig> itemConfig)
     {
@@ -36,16 +37,27 @@ internal class MainController : BaseController
                 _gameController = new GameController(_profilePlayer);
                 _mainMenuController?.Dispose();
                 _rewardController?.Dispose();
+                _fightWindowController?.Dispose();
                 break;
 
             case GameState.Reward:
                 _rewardController = new RewardController(_placeForUi, _profilePlayer);
+                _gameController?.Dispose();
+                _inventoryController?.Dispose();
+                break;
+
+            case GameState.Fight:
+                _fightWindowController = new FightWindowController(_placeForUi, _profilePlayer);
+                _gameController?.Dispose();
+                _inventoryController?.Dispose();
                 break;
 
             default:
                 _mainMenuController?.Dispose();
                 _gameController?.Dispose();
                 _inventoryController?.Dispose();
+                _rewardController?.Dispose();
+                _fightWindowController?.Dispose();
                 break;
         }
     }

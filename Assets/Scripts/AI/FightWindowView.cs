@@ -1,4 +1,3 @@
-using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -21,6 +20,10 @@ public class FightWindowView : MonoBehaviour
 
     [SerializeField] private Button _fightButton;
     [SerializeField] private Button _passByButton;
+
+    [SerializeField] private Button _closeButton;
+
+    public Button CloseButton => _closeButton;
 
     private Enemy _enemy;
     private Money _money;
